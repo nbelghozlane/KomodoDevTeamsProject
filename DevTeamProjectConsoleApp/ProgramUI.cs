@@ -15,6 +15,7 @@ namespace DevTeamProjectConsoleApp
         //Method to start application (UI part)
         public void Run()
         {
+            SeedContentList();
             Menu();
         }
 
@@ -24,10 +25,10 @@ namespace DevTeamProjectConsoleApp
             bool keepRunning = true;
             while (keepRunning)
             {
-
-
                 //Display options
-                Console.WriteLine("Hello! Please select a menu option(type in number):\n" +
+                Console.WriteLine("Hello! Welcome to Komodo Insurance Developer Team Application!\n" +
+                    "Please select a menu option(type in number):\n" +
+                    " \n" +
                     "1. Create New Developer\n" +
                     "2. View All Developers\n" +
                     "3. View Developer By ID Number\n" +
@@ -108,16 +109,44 @@ namespace DevTeamProjectConsoleApp
 
             _developerRepo.AddDeveloperToList(newDeveloper);
 
-
         }
 
         private void ViewAllDevelopers()
         {
+            Console.Clear();
+            List<Developer> listOfDevelopers = _developerRepo.GetDeveloperList();
 
+            foreach(Developer developer in listOfDevelopers)
+            {
+                Console.WriteLine($"Full Name: {developer.FirstName} {developer.LastName}\n" +
+                    $"ID Number: {developer.IdNumber}\n" +
+                    $"Pluralsight Access: {developer.PluralsightAccess}\n" +
+                    $" ");     
+            }
+                   
         }
 
         private void ViewDeveloperByIdNumber()
         {
+            Console.Clear();
+            Console.WriteLine("Enter the developer's ID number:");
+
+            string idNumber = Console.ReadLine();
+
+            Developer developer = _developerRepo.GetDeveloperByIDNumber(idNumber);
+
+            if (developer != null)
+            {
+                Console.WriteLine($"First Name: {developer.FirstName}\n" +
+                    $"Last Name: {developer.LastName}\n" +
+                    $"ID Number: {developer.IdNumber}\n" +
+                    $"Pluralsight Access: {developer.PluralsightAccess}\n" +
+                    $" ");
+            }
+            else
+            {
+                Console.WriteLine("There is no developer assigned to that ID Number.");
+            }
 
         }
 
@@ -133,6 +162,19 @@ namespace DevTeamProjectConsoleApp
 
         private void ViewDevelopersWithoutPluralsight()
         {
+
+        }
+
+        //seed method
+        private void SeedContentList()
+        {
+            Developer developer1 = new Developer("Nadia", "Belghozlane", "81992", true);
+            Developer developer2 = new Developer("John", "Smith", "81993", true);
+            Developer developer3 = new Developer("Harry", "Potter", "81994", false);
+
+            _developerRepo.AddDeveloperToList(developer1);
+            _developerRepo.AddDeveloperToList(developer2);
+            _developerRepo.AddDeveloperToList(developer3);
 
         }
 
