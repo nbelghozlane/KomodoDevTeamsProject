@@ -11,7 +11,6 @@ namespace DevTeamProjectConsoleApp
     {
         private DeveloperRepo _developerRepo = new DeveloperRepo();
 
-
         //Method to start application (UI part)
         public void Run()
         {
@@ -107,7 +106,6 @@ namespace DevTeamProjectConsoleApp
             }
 
             _developerRepo.AddDeveloperToList(newDeveloper);
-
         }
 
         private void ViewAllDevelopers()
@@ -191,9 +189,6 @@ namespace DevTeamProjectConsoleApp
             {
                 Console.WriteLine("The developer's information could not be updated. Please try again.");
             }
-
-
-
         }
 
         private void DeleteExistingDeveloper()
@@ -218,7 +213,22 @@ namespace DevTeamProjectConsoleApp
 
         private void ViewDevelopersWithoutPluralsight()
         {
+            Console.Clear();
+            List<Developer> listOfDevelopers = _developerRepo.GetDeveloperList();
 
+            foreach (Developer developer in listOfDevelopers)
+            {
+                if (developer.PluralsightAccess == false)
+                {
+                    Console.WriteLine($"Full Name: {developer.FirstName} {developer.LastName}\n" +
+                        $"ID Number: {developer.IdNumber}\n" +
+                        $" ");
+                }
+                else
+                {
+                    
+                }
+            }
         }
 
         //seed method
@@ -227,11 +237,12 @@ namespace DevTeamProjectConsoleApp
             Developer developer1 = new Developer("Nadia", "Belghozlane", "81992", true);
             Developer developer2 = new Developer("John", "Smith", "81993", true);
             Developer developer3 = new Developer("Harry", "Potter", "81994", false);
+            Developer developer4 = new Developer("Ron", "Weasley", "81995", false);
 
             _developerRepo.AddDeveloperToList(developer1);
             _developerRepo.AddDeveloperToList(developer2);
             _developerRepo.AddDeveloperToList(developer3);
-
+            _developerRepo.AddDeveloperToList(developer4);
         }
 
     }

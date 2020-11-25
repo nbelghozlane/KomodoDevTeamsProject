@@ -14,7 +14,6 @@ namespace DevTeamsProject
         public string IdNumber { get; set; }
         public bool PluralsightAccess { get; set; }
 
-
         public Developer() { }
 
         public Developer(string firstName, string lastName, string idNumber, bool pluralsightAccess)
