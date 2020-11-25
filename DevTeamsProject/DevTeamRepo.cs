@@ -19,4 +19,7 @@ namespace DevTeamsProject
         //DevTeam Helper (Get Team by ID)
 
     }
+
+    //You must remove the field: _developerRepo from the DevTeamRepo class.
+    //You will need to access your pool of Developers from outside of the DevTeamRepo class; utilize parameters to pass in Developer objects when adding or removing Developers from a Team.
 }

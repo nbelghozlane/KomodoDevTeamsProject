@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevTeamsProject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace DevTeamProjectConsoleApp
 {
     class ProgramUI
     {
+        private DeveloperRepo _developerRepo = new DeveloperRepo();
+
 
         //Method to start application (UI part)
         public void Run()
@@ -77,6 +80,34 @@ namespace DevTeamProjectConsoleApp
 
         private void CreateNewDeveloper()
         {
+            Console.Clear();
+            Developer newDeveloper = new Developer();
+
+            //firstname
+            Console.WriteLine("Enter the developer's first name:");
+            newDeveloper.FirstName = Console.ReadLine();
+            //lastname
+            Console.WriteLine("Enter the developer's last name:");
+            newDeveloper.LastName = Console.ReadLine();
+            //idnumber
+            Console.WriteLine("Enter the developer's ID number:");
+            newDeveloper.IdNumber = Console.ReadLine();
+            //pluralsight
+            Console.WriteLine("Does the developer have access to Pluralsight? (Enter yes or no)");
+            string pluralsightAccessString = Console.ReadLine().ToLower();
+            newDeveloper.PluralsightAccess = bool.Parse(pluralsightAccessString);
+
+            if(pluralsightAccessString == "yes")
+            {
+                newDeveloper.PluralsightAccess = true;
+            }
+            else
+            {
+                newDeveloper.PluralsightAccess = false;
+            }
+
+            _developerRepo.AddDeveloperToList(newDeveloper);
+
 
         }
 
