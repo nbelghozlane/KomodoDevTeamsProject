@@ -96,7 +96,6 @@ namespace DevTeamProjectConsoleApp
             //pluralsight
             Console.WriteLine("Does the developer have access to Pluralsight? (Enter yes or no)");
             string pluralsightAccessString = Console.ReadLine().ToLower();
-            newDeveloper.PluralsightAccess = bool.Parse(pluralsightAccessString);
 
             if(pluralsightAccessString == "yes")
             {
@@ -152,11 +151,68 @@ namespace DevTeamProjectConsoleApp
 
         private void UpdateExistingDeveloperInfo()
         {
+            ViewAllDevelopers();
+
+            Console.WriteLine("Enter the developer ID Number to update his/her information:");
+
+            string oldDeveloperInfo = Console.ReadLine();
+
+            Developer newDeveloper = new Developer();
+
+            //firstname
+            Console.WriteLine("Enter the developer's first name:");
+            newDeveloper.FirstName = Console.ReadLine();
+            //lastname
+            Console.WriteLine("Enter the developer's last name:");
+            newDeveloper.LastName = Console.ReadLine();
+            //idnumber
+            Console.WriteLine("Enter the developer's ID number:");
+            newDeveloper.IdNumber = Console.ReadLine();
+            //pluralsight
+            Console.WriteLine("Does the developer have access to Pluralsight? (Enter yes or no)"); 
+            string pluralsightAccessString = Console.ReadLine().ToLower();
+            
+            if (pluralsightAccessString == "yes")
+            {
+                newDeveloper.PluralsightAccess = true;
+            }
+            else
+            {
+                newDeveloper.PluralsightAccess = false;
+            }
+
+            bool wasUpdated = _developerRepo.UpdateExistingDeveloper(oldDeveloperInfo, newDeveloper);
+
+            if (wasUpdated)
+            {
+                Console.WriteLine("Success! The developer's information has been updated.");
+            }
+            else
+            {
+                Console.WriteLine("The developer's information could not be updated. Please try again.");
+            }
+
+
 
         }
 
         private void DeleteExistingDeveloper()
         {
+            ViewAllDevelopers();
+
+            Console.WriteLine("Enter the ID Number of the developer you want to remove:");
+            string input = Console.ReadLine();
+
+            bool wasRemoved = _developerRepo.RemoveDeveloperFromList(input);
+
+            if (wasRemoved)
+            {
+                Console.WriteLine("The developer was successfully deleted from the application.");
+            }
+            else
+            {
+                Console.WriteLine("The developer could not be deleted from the application. Please try again.");
+            }
 
         }
 
