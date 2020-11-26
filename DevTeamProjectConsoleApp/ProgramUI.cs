@@ -245,5 +245,10 @@ namespace DevTeamProjectConsoleApp
             _developerRepo.AddDeveloperToList(developer4);
         }
 
+        private void SeedTeamList()
+        {
+            //Create team names here
+        }
+
     }
 }

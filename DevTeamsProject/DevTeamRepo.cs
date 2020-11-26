@@ -8,18 +8,37 @@ namespace DevTeamsProject
 {
     public class DevTeamRepo
     {
-        private readonly DeveloperRepo _developerRepo = new DeveloperRepo(); // this gives you access to the _developerDirectory so you can access existing Developers and add them to a team
+        
         private readonly List<DevTeam> _devTeams = new List<DevTeam>();
 
-        //DevTeam Create
-        //DevTeam Read
-        //DevTeam Update
-        //DevTeam Delete
+        //DevTeam Create - create a team
+        public void CreateNewTeam(DevTeam devTeam)
+        {
+            _devTeams.Add(devTeam);
+        }
 
-        //DevTeam Helper (Get Team by ID)
+
+        //DevTeam Read  - list of teams
+        public List<DevTeam> GetDevTeamList()
+        {
+            return _devTeams;
+        }
+
+        //DevTeam Update- add users to team
+        public void AddDeveloperToTeam(Developer developer)
+        {
+
+        }
+
+
+        //DevTeam Delete - remove members from team
+
+
+
+
+        //DevTeam Helper (Get Team by ID) - team IDs
 
     }
 
-    //You must remove the field: _developerRepo from the DevTeamRepo class.
-    //You will need to access your pool of Developers from outside of the DevTeamRepo class; utilize parameters to pass in Developer objects when adding or removing Developers from a Team.
+   
 }
