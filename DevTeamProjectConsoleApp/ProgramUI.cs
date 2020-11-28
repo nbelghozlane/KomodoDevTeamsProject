@@ -10,6 +10,7 @@ namespace DevTeamProjectConsoleApp
     class ProgramUI
     {
         private DeveloperRepo _developerRepo = new DeveloperRepo();
+        private DevTeamRepo _devTeams = new DevTeamRepo();
 
         //Method to start application (UI part)
         public void Run()
@@ -28,13 +29,26 @@ namespace DevTeamProjectConsoleApp
                 Console.WriteLine("Hello! Welcome to Komodo Insurance Developer Team Application!\n" +
                     "Please select a menu option(type in number):\n" +
                     " \n" +
+                    "DEVELOPERS:\n" +
                     "1. Create New Developer\n" +
                     "2. View All Developers\n" +
                     "3. View Developer By ID Number\n" +
                     "4. Update Existing Developer Information\n" +
                     "5. Delete Existing Developer\n" +
                     "6. View Developers That Need Pluralsight License\n" +
-                    "7. Exit");
+                    " \n" +
+                    "DEVELOPER TEAMS:\n" +
+                    
+                    "7. Create New Developer Team\n" +
+                    "8. View All Teams\n" +
+                    "9. View All Teams By Team ID Number\n" +
+                    "10. Update Teams\n" +
+                    "11. Add Developer To Team\n" +
+                    "12. Remove Developer From Team\n" +
+                    "13. Exit");
+
+                //update teams -  do you want to add or remove devs?
+                // add multiple devs to team at once
 
                 //Get user input
                 string input = Console.ReadLine();
@@ -61,10 +75,28 @@ namespace DevTeamProjectConsoleApp
                         ViewDevelopersWithoutPluralsight();
                         break;
                     case "7":
+                        CreateNewDeveloperTeam();
+                        break;
+                    case "8":
+                        ViewAllTeams();
+                        break;
+                    case "9":
+                        ViewAllTeamsByIDNumber();
+                        break;
+                    case "10":
+                        UpdateTeams();
+                        break;
+                    case "11":
+                        AddDeveloperToTeam();
+                        break;
+                    case "12":
+                        RemoveDeveloperFromTeam();
+                        break;
+                    case "13":
                         Console.WriteLine("Goodbye!");
                         keepRunning = false;
                         break;
-                    //need bool
+
                     default:
                         Console.WriteLine("Please enter a valid number.");
                         break;
@@ -231,13 +263,50 @@ namespace DevTeamProjectConsoleApp
             }
         }
 
+        //Developer Teams:
+        private void CreateNewDeveloperTeam()
+        {
+            Console.Clear();
+            DevTeam newDevTeam = new DevTeam();
+
+            Console.WriteLine("Enter the developer team name:");
+            newDevTeam.TeamName= Console.ReadLine();
+
+            Console.WriteLine("Enter the team ID number:");
+            newDevTeam.TeamIdNumber = Console.ReadLine();
+        }
+        private void ViewAllTeams()
+        {
+
+        }
+
+        private void ViewAllTeamsByIDNumber()
+        {
+
+        }
+
+        private void UpdateTeams()
+        {
+
+        }
+
+        private void AddDeveloperToTeam()
+        {
+
+        }
+
+        private void RemoveDeveloperFromTeam()
+        {
+
+        }
+                     
         //seed method
         private void SeedContentList()
         {
-            Developer developer1 = new Developer("Nadia", "Belghozlane", "81992", true);
-            Developer developer2 = new Developer("John", "Smith", "81993", true);
-            Developer developer3 = new Developer("Harry", "Potter", "81994", false);
-            Developer developer4 = new Developer("Ron", "Weasley", "81995", false);
+            Developer developer1 = new Developer("Nadia", "Belghozlane", "81992","", true);
+            Developer developer2 = new Developer("John", "Smith", "81993","", true);
+            Developer developer3 = new Developer("Harry", "Potter", "81994","", false);
+            Developer developer4 = new Developer("Ron", "Weasley", "81995","", false);
 
             _developerRepo.AddDeveloperToList(developer1);
             _developerRepo.AddDeveloperToList(developer2);
@@ -247,7 +316,6 @@ namespace DevTeamProjectConsoleApp
 
         private void SeedTeamList()
         {
-            //Create team names here
         }
 
     }

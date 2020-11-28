@@ -12,15 +12,17 @@ namespace DevTeamsProject
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string IdNumber { get; set; }
+        public string TeamName { get; set; }
         public bool PluralsightAccess { get; set; }
 
         public Developer() { }
 
-        public Developer(string firstName, string lastName, string idNumber, bool pluralsightAccess)
+        public Developer(string firstName, string lastName, string idNumber, string teamName, bool pluralsightAccess)
         {
             FirstName = firstName;
             LastName = lastName;
             IdNumber = idNumber;
+            TeamName = teamName;
             PluralsightAccess = pluralsightAccess;
         }
        
