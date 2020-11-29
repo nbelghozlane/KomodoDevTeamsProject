@@ -14,12 +14,12 @@ namespace DevTeamsProject
         List<Developer> DeveloperListForDevTeams { get; set; }
         public DevTeam() { }
 
-        public DevTeam(string teamName, string teamIdNumber, string developerIdNumber, List<Developer> developerListForDevTeams)
+        public DevTeam(string teamName, string teamIdNumber, string developerIdNumber)  //List<Developer> developerListForDevTeams
         {
             TeamName = teamName;
             TeamIdNumber = teamIdNumber;
             DeveloperIdNumber = developerIdNumber;
-            DeveloperListForDevTeams = developerListForDevTeams;
+            //DeveloperListForDevTeams = developerListForDevTeams;
         }
 
         //Team name

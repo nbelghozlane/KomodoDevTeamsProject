@@ -16,6 +16,7 @@ namespace DevTeamProjectConsoleApp
         public void Run()
         {
             SeedContentList();
+            SeedTeamList();
             Menu();
         }
 
@@ -41,7 +42,7 @@ namespace DevTeamProjectConsoleApp
                     
                     "7. Create New Developer Team\n" +
                     "8. View All Teams\n" +
-                    "9. View All Teams By Team ID Number\n" +
+                    "9. View Team By Team ID Number\n" +
                     "10. Update Teams\n" +
                     "11. Add Developer To Team\n" +
                     "12. Remove Developer From Team\n" +
@@ -81,7 +82,7 @@ namespace DevTeamProjectConsoleApp
                         ViewAllTeams();
                         break;
                     case "9":
-                        ViewAllTeamsByIDNumber();
+                        ViewTeamByTeamIDNumber();
                         break;
                     case "10":
                         UpdateTeams();
@@ -274,16 +275,48 @@ namespace DevTeamProjectConsoleApp
 
             Console.WriteLine("Enter the team ID number:");
             newDevTeam.TeamIdNumber = Console.ReadLine();
+
+            _devTeams.CreateNewTeam(newDevTeam);
+
         }
         private void ViewAllTeams()
         {
+            Console.Clear();
+
+            List<DevTeam> listOfDevTeams = _devTeams.GetDevTeamList();
+
+            foreach(DevTeam devTeam in listOfDevTeams)
+            {
+                Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
+                    $"Team ID Number: {devTeam.TeamIdNumber}\n" +
+                    $"Developers On This Team:");
+            }
 
         }
 
-        private void ViewAllTeamsByIDNumber()
+        private void ViewTeamByTeamIDNumber()
         {
+            Console.Clear();
+            Console.WriteLine("Enter the Team ID number:");
+
+            string teamIdNumber = Console.ReadLine();
+
+            DevTeam devTeam = _devTeams.GetDevTeamByIdNumber(teamIdNumber);
+                //_developerRepo.GetDeveloperByIDNumber(idNumber);
+
+            if (devTeam != null)
+            {
+                Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
+                    $"Developers On This Team: \n" +
+                    $" ");
+            }
+            else
+            {
+                Console.WriteLine("There is no team assigned to that ID Number.");
+            }
 
         }
+    
 
         private void UpdateTeams()
         {
@@ -316,7 +349,9 @@ namespace DevTeamProjectConsoleApp
 
         private void SeedTeamList()
         {
-        }
+            DevTeam team1 = new DevTeam("Team1", "T1234", "81993");
 
+            _devTeams.CreateNewTeam(team1);
+        }
     }
 }
