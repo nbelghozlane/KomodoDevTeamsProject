@@ -9,7 +9,7 @@ namespace DevTeamsProject
     public class DevTeamRepo
     {
         private readonly List<DevTeam> _devTeams = new List<DevTeam>();
-        //List<Developer> _developerDirectory = new List<Developer>(); //*??
+        List<Developer> _developerDirectory = new List<Developer>(); //* think i need this??
 
         //DevTeam Create - create a team/ add user to team
         public void CreateNewTeam(DevTeam devTeam)
@@ -17,17 +17,11 @@ namespace DevTeamsProject
             _devTeams.Add(devTeam);
         }
 
-        //public void AddDeveloperToTeam(Developer developer) //(may be wrong)
-        //{
-         //   _developerDirectory.Add(developer);
-       // }
-
-        public void AddDeveloperToTeam(DevTeam developerListForDevTeams, Developer developer)
+        /*public void AddDeveloperToTeam(DevTeam developerListForDevTeams, Developer developer)
         {
-           // Developer oldDeveloperInfo = GetDevByIdNumber(developerListForDevTeams);
 
             _devTeams.Add(developerListForDevTeams);
-        }
+        }*/
 
         //DevTeam Read  - list of teams
         public List<DevTeam> GetDevTeamList()
@@ -35,22 +29,23 @@ namespace DevTeamsProject
             return _devTeams;
         }
 
-        //DevTeam Update
+        /*DevTeam Update
         public void UpdateExistingDeveloperToTeam()
         {
-
+         don't necessarily need to have this section if it causes problems
         }
-        //DevTeam Delete - remove members from team 
+
+        /*DevTeam Delete - remove members from team 
         public bool RemoveDeveloperFromTeam(string developerIdNumber)
-         {
+         
             DevTeam developerOnTeam = GetDeveloperByIDNumber(developerIdNumber);
 
-            if (developerOnTeam == null)
+           if (developerOnTeam == null)
             {
-                return false;
-            }
+               return false;
+           }
 
-            int initialCount = _devTeams.Count;
+           int initialCount = _devTeams.Count;
             _devTeams.Remove(developerOnTeam);
 
             if (initialCount > _devTeams.Count)
@@ -62,7 +57,7 @@ namespace DevTeamsProject
                 return false;
             }
 
-         }
+         }*/
 
         //DevTeam Helper (Get Team by ID)
         public DevTeam GetDevTeamByIdNumber(string TeamIdNumber)
@@ -80,21 +75,21 @@ namespace DevTeamsProject
         }
        
         //Helper for get developer list above by Id number ??
-        public DevTeam GetDeveloperByIDNumber(string developerIdNumber)
-        {
+        //public DevTeam GetDeveloperByIDNumber(string developerIdNumber)
+        //{
             
 
-            foreach (DevTeam developerOnTeam in _devTeams)
-            {
-                if (developerOnTeam.DeveloperIdNumber == developerIdNumber)
-                {
-                    return developerOnTeam;
-                }
+            //foreach (DevTeam developerOnTeam in _devTeams)
+            //{
+              //  if (developerOnTeam.DeveloperIdNumber == developerIdNumber)
+              //  {
+               //     return developerOnTeam;
+              //  }
 
-            }
+         //   }
 
-            return null;
-        }
+          //  return null;
+       // }
 
         
     }

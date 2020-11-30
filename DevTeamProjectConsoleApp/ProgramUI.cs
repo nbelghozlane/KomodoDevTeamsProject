@@ -278,7 +278,7 @@ namespace DevTeamProjectConsoleApp
             Developer newDeveloper = new Developer();
             Console.WriteLine("Enter developer ID number of developer you'd like to add:");
             newDeveloper.IdNumber = Console.ReadLine();
-            //developer id number == to dev id number on dev teams??
+            
 
             _devTeams.CreateNewTeam(newDevTeam);
 
@@ -293,7 +293,7 @@ namespace DevTeamProjectConsoleApp
             {
                 Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
                     $"Team ID Number: {devTeam.TeamIdNumber}\n" +
-                    $"Developers On This Team: {devTeam.DeveloperIdNumber}");
+                    $"Developers On This Team: ");
             }
 
         }
@@ -311,7 +311,7 @@ namespace DevTeamProjectConsoleApp
             if (devTeam != null)
             {
                 Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
-                    $"Developers On This Team: {devTeam.DeveloperIdNumber} \n" +
+                    $"Developers On This Team: \n" +
                     $" ");
             }
             else
@@ -366,9 +366,10 @@ namespace DevTeamProjectConsoleApp
 
         private void SeedTeamList()
         {
-            DevTeam team1 = new DevTeam("Team1", "T1234", "81993", List<Developer>);
+            DevTeam team1 = new DevTeam("Team1", "T1234");
 
             _devTeams.CreateNewTeam(team1);
+
         }
     }
 }
