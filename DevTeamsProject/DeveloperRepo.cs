@@ -11,7 +11,7 @@ namespace DevTeamsProject
         private readonly List<Developer> _developerDirectory = new List<Developer>();
         //Developer Create
 
-        public void AddDeveloperToList(Developer developer)
+        public void AddDeveloper(Developer developer)
         {
             _developerDirectory.Add(developer);
         }

@@ -76,7 +76,7 @@ namespace DevTeamProjectConsoleApp
                         ViewDevelopersWithoutPluralsight();
                         break;
                     case "7":
-                        CreateNewDeveloperTeam();
+                        CreateNewDeveloperTeam();  //get id what the team id
                         break;
                     case "8":
                         ViewAllTeams();
@@ -137,7 +137,7 @@ namespace DevTeamProjectConsoleApp
                 newDeveloper.PluralsightAccess = false;
             }
 
-            _developerRepo.AddDeveloperToList(newDeveloper);
+            _developerRepo.AddDeveloper(newDeveloper);
         }
 
         private void ViewAllDevelopers()
@@ -247,6 +247,7 @@ namespace DevTeamProjectConsoleApp
         {
             Console.Clear();
             List<Developer> listOfDevelopers = _developerRepo.GetDeveloperList();
+            
 
             foreach (Developer developer in listOfDevelopers)
             {
@@ -266,6 +267,7 @@ namespace DevTeamProjectConsoleApp
         //Developer Teams:
         private void CreateNewDeveloperTeam()
         {
+            
             Console.Clear();
             DevTeam newDevTeam = new DevTeam();
 
@@ -275,25 +277,76 @@ namespace DevTeamProjectConsoleApp
             Console.WriteLine("Enter the team ID number:");
             newDevTeam.TeamIdNumber = Console.ReadLine();
 
-            Developer newDeveloper = new Developer();
-            Console.WriteLine("Enter developer ID number of developer you'd like to add:");
-            newDeveloper.IdNumber = Console.ReadLine();
-            
+
+            Console.WriteLine("Do you want to add a developer to this team? (y/n)");  //bool get yes or no, then while loop , new developer = createnew dev; call new .addteammember from dev repo (
+            bool addDeveloper = GetYesNoAnswer();
+
+            while (addDeveloper)
+            {
+                Console.Clear();
+                Developer newDeveloper = CreateNewDev();
+                newDevTeam.AddDeveloper(newDeveloper);
+                Console.WriteLine("Would you like to add another developer? (y/n)");
+                addDeveloper = GetYesNoAnswer();
+                
+            }
+
 
             _devTeams.CreateNewTeam(newDevTeam);
+            
+        }
+        private Developer CreateNewDev()
+        {
+            Developer newDev = new Developer();
+
+            Console.WriteLine("Enter the new developer's ID:");
+            newDev.IdNumber = Console.ReadLine();
+
+            Console.WriteLine("Enter the new developer's First Name:");
+            newDev.FirstName = Console.ReadLine();
+
+            Console.WriteLine("Enter the new developer's Last Name:");
+            newDev.LastName = Console.ReadLine();
+
+            Console.WriteLine($"Does {newDev.FirstName} have access to a Pluralsight account? (Y/N)");
+            newDev.PluralsightAccess = GetYesNoAnswer();
+
+            return newDev;
 
         }
+        private bool GetYesNoAnswer()
+        {
+            while (true)
+            {
+                string input = Console.ReadLine().ToLower();
+                switch (input)
+                {
+                    case "yes":
+                    case "y":
+                        return true;
+                    case "no":
+                    case "n":
+                        return false;
+                }
+                Console.WriteLine("Please enter valid input");
+            }
+        }
+
+
         private void ViewAllTeams()
         {
             Console.Clear();
 
             List<DevTeam> listOfDevTeams = _devTeams.GetDevTeamList();
 
-            foreach(DevTeam devTeam in listOfDevTeams)
+            foreach (DevTeam devTeam in listOfDevTeams)
             {
                 Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
-                    $"Team ID Number: {devTeam.TeamIdNumber}\n" +
-                    $"Developers On This Team: ");
+                    $"Team ID Number: {devTeam.TeamIdNumber}"); 
+                Console.WriteLine($"Developers On This Team: \n");
+
+
+
             }
 
         }
@@ -328,8 +381,9 @@ namespace DevTeamProjectConsoleApp
 
         }
 
-        private void AddDeveloperToTeam()
+        /*private void AddDeveloperToTeam()
         {
+            
             //List<Developer> _developerDirectory = new List<Developer>();
             Console.Clear();
             List<Developer> newList = _developerRepo.GetDeveloperList();
@@ -339,11 +393,23 @@ namespace DevTeamProjectConsoleApp
                     $"ID Number: {developer.IdNumber}\n" +
                     $" ");
 
-                // Need user input: type in ID number and send to list of teams
+                /* Need user input: type in ID number and send to list of teams
                 //string input = Console.ReadLine();
-                   
+                 
             }
-        }
+            
+            DevTeam newDevTeam = new DevTeam();
+            Console.WriteLine("Enter the Team ID number for the team you'd like to add developer to:");
+            newDevTeam.TeamIdNumber = Console.ReadLine();
+            _devTeams.GetDevTeamByIdNumber(newDevTeam.TeamIdNumber);
+
+            Developer newDeveloper = new Developer();
+            Console.WriteLine("Enter the developer ID for the developer you'd like to add to the team:");
+            newDeveloper.IdNumber = Console.ReadLine();
+            _developerRepo.AddDeveloper(newDeveloper);
+          
+           
+        }*/
 
         private void RemoveDeveloperFromTeam()
         {
@@ -356,20 +422,22 @@ namespace DevTeamProjectConsoleApp
             Developer developer1 = new Developer("Nadia", "Belghozlane", "81992","", true);
             Developer developer2 = new Developer("John", "Smith", "81993","", true);
             Developer developer3 = new Developer("Harry", "Potter", "81994","", false);
-            Developer developer4 = new Developer("Ron", "Weasley", "81995","", false);
+            Developer developer4 = new Developer("Ron", "Weasley", "81995","", false);   //maybe add this to below segment to connect id numbers
 
-            _developerRepo.AddDeveloperToList(developer1);
-            _developerRepo.AddDeveloperToList(developer2);
-            _developerRepo.AddDeveloperToList(developer3);
-            _developerRepo.AddDeveloperToList(developer4);
+            _developerRepo.AddDeveloper(developer1);
+            _developerRepo.AddDeveloper(developer2);
+            _developerRepo.AddDeveloper(developer3);
+            _developerRepo.AddDeveloper(developer4);
         }
 
         private void SeedTeamList()
         {
-            DevTeam team1 = new DevTeam("Team1", "T1234");
+          
+            DevTeam team1 = new DevTeam("Team 1", "T1234");
+            DevTeam team2 = new DevTeam("Team 2", "T4567");
 
             _devTeams.CreateNewTeam(team1);
-
+            _devTeams.CreateNewTeam(team2);
         }
     }
 }
