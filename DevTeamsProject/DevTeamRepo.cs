@@ -9,14 +9,23 @@ namespace DevTeamsProject
     public class DevTeamRepo
     {
         private readonly List<DevTeam> _devTeams = new List<DevTeam>();
+        //List<Developer> _developerDirectory = new List<Developer>(); //*??
+
         //DevTeam Create - create a team/ add user to team
         public void CreateNewTeam(DevTeam devTeam)
         {
             _devTeams.Add(devTeam);
         }
 
-        public void AddDeveloperToTeam(DevTeam developerListForDevTeams) //(may be wrong)
+        //public void AddDeveloperToTeam(Developer developer) //(may be wrong)
+        //{
+         //   _developerDirectory.Add(developer);
+       // }
+
+        public void AddDeveloperToTeam(DevTeam developerListForDevTeams, Developer developer)
         {
+           // Developer oldDeveloperInfo = GetDevByIdNumber(developerListForDevTeams);
+
             _devTeams.Add(developerListForDevTeams);
         }
 
@@ -27,23 +36,24 @@ namespace DevTeamsProject
         }
 
         //DevTeam Update
+        public void UpdateExistingDeveloperToTeam()
+        {
 
-
-
+        }
         //DevTeam Delete - remove members from team 
         public bool RemoveDeveloperFromTeam(string developerIdNumber)
-        {
+         {
             DevTeam developerOnTeam = GetDeveloperByIDNumber(developerIdNumber);
 
-            if(developerOnTeam == null)
+            if (developerOnTeam == null)
             {
                 return false;
             }
 
             int initialCount = _devTeams.Count;
             _devTeams.Remove(developerOnTeam);
-            
-            if(initialCount > _devTeams.Count)
+
+            if (initialCount > _devTeams.Count)
             {
                 return true;
             }
@@ -52,7 +62,7 @@ namespace DevTeamsProject
                 return false;
             }
 
-        }
+         }
 
         //DevTeam Helper (Get Team by ID)
         public DevTeam GetDevTeamByIdNumber(string TeamIdNumber)
@@ -67,25 +77,26 @@ namespace DevTeamsProject
             }
 
             return null;
-
         }
-        //
+       
         //Helper for get developer list above by Id number ??
         public DevTeam GetDeveloperByIDNumber(string developerIdNumber)
         {
+            
+
             foreach (DevTeam developerOnTeam in _devTeams)
             {
-               if (developerOnTeam.DeveloperIdNumber == developerIdNumber)
+                if (developerOnTeam.DeveloperIdNumber == developerIdNumber)
                 {
                     return developerOnTeam;
                 }
 
-           }
+            }
 
             return null;
-
         }
 
+        
     }
 }
 

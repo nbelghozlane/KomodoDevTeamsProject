@@ -85,7 +85,7 @@ namespace DevTeamProjectConsoleApp
                         ViewTeamByTeamIDNumber();
                         break;
                     case "10":
-                        UpdateTeams();
+                        UpdateExistingTeams();
                         break;
                     case "11":
                         AddDeveloperToTeam();
@@ -101,7 +101,6 @@ namespace DevTeamProjectConsoleApp
                     default:
                         Console.WriteLine("Please enter a valid number.");
                         break;
-
                 }
 
                 Console.WriteLine("Please press any key to continue.");
@@ -276,6 +275,11 @@ namespace DevTeamProjectConsoleApp
             Console.WriteLine("Enter the team ID number:");
             newDevTeam.TeamIdNumber = Console.ReadLine();
 
+            Developer newDeveloper = new Developer();
+            Console.WriteLine("Enter developer ID number of developer you'd like to add:");
+            newDeveloper.IdNumber = Console.ReadLine();
+            //developer id number == to dev id number on dev teams??
+
             _devTeams.CreateNewTeam(newDevTeam);
 
         }
@@ -289,7 +293,7 @@ namespace DevTeamProjectConsoleApp
             {
                 Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
                     $"Team ID Number: {devTeam.TeamIdNumber}\n" +
-                    $"Developers On This Team:");
+                    $"Developers On This Team: {devTeam.DeveloperIdNumber}");
             }
 
         }
@@ -307,7 +311,7 @@ namespace DevTeamProjectConsoleApp
             if (devTeam != null)
             {
                 Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
-                    $"Developers On This Team: \n" +
+                    $"Developers On This Team: {devTeam.DeveloperIdNumber} \n" +
                     $" ");
             }
             else
@@ -317,15 +321,28 @@ namespace DevTeamProjectConsoleApp
 
         }
     
-
-        private void UpdateTeams()
+        private void UpdateExistingTeams()
         {
+            
+
 
         }
 
         private void AddDeveloperToTeam()
         {
+            //List<Developer> _developerDirectory = new List<Developer>();
+            Console.Clear();
+            List<Developer> newList = _developerRepo.GetDeveloperList();
+            foreach (Developer developer in newList)
+            {
+                Console.WriteLine($"Full Name: {developer.FirstName} {developer.LastName}\n" +
+                    $"ID Number: {developer.IdNumber}\n" +
+                    $" ");
 
+                // Need user input: type in ID number and send to list of teams
+                //string input = Console.ReadLine();
+                   
+            }
         }
 
         private void RemoveDeveloperFromTeam()
@@ -349,7 +366,7 @@ namespace DevTeamProjectConsoleApp
 
         private void SeedTeamList()
         {
-            DevTeam team1 = new DevTeam("Team1", "T1234", "81993");
+            DevTeam team1 = new DevTeam("Team1", "T1234", "81993", List<Developer>);
 
             _devTeams.CreateNewTeam(team1);
         }
