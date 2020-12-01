@@ -9,13 +9,12 @@ namespace DevTeamsProject
     public class DeveloperRepo
     {
         private readonly List<Developer> _developerDirectory = new List<Developer>();
-        //Developer Create
 
+        //Developer Create
         public void AddDeveloper(Developer developer)
         {
             _developerDirectory.Add(developer);
         }
-
 
         //Developer Read
         public List<Developer> GetDeveloperList()
@@ -41,7 +40,6 @@ namespace DevTeamsProject
             {
                 return false;
             }
-
         }
 
         //Developer Delete
@@ -76,9 +74,7 @@ namespace DevTeamsProject
                 {
                     return developer;
                 }
-
             }
-
             return null;
         }
     }

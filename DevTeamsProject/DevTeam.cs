@@ -10,29 +10,26 @@ namespace DevTeamsProject
     {
         public string TeamName { get; set; }
         public string TeamIdNumber { get; set; }
-        //public string DeveloperIdNumber { get; set; } //get rid of
         public List<Developer> DeveloperListForDevTeams { get; set; }
+        public string IdNumber { get; set; }
         public DevTeam() { }
 
-        public DevTeam(string teamName, string teamIdNumber) //List<Developer> developerListForDevTeams
+        public DevTeam(string teamName, string teamIdNumber, string idNumber) 
         {
             TeamName = teamName;
             TeamIdNumber = teamIdNumber;
-            //DeveloperListForDevTeams = devList;
+            IdNumber = idNumber;
         }
 
-        //Team name
-        //Team id numbers
+        //Developer repo:
 
-        //developer repo
         private readonly List<Developer> _developerDirectory = new List<Developer>();
-        //Developer Create
 
+        //Developer Create
         public void AddDeveloper(Developer developer)
         {
             _developerDirectory.Add(developer);
         }
-
 
         //Developer Read
         public List<Developer> GetDeveloperList()

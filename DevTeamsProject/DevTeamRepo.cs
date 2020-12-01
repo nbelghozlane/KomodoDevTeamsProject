@@ -15,13 +15,7 @@ namespace DevTeamsProject
         public void CreateNewTeam(DevTeam devTeam)
         {
             _devTeams.Add(devTeam);
-        }
-
-        /*public void AddDeveloperToTeam(DevTeam developerListForDevTeams, Developer developer)
-        {
-
-            _devTeams.Add(developerListForDevTeams);
-        }*/
+        } 
 
         //DevTeam Read  - list of teams
         public List<DevTeam> GetDevTeamList()
@@ -29,36 +23,10 @@ namespace DevTeamsProject
             return _devTeams;
         }
 
-        /*DevTeam Update
-        public void UpdateExistingDeveloperToTeam()
-        {
-         don't necessarily need to have this section if it causes problems
-        }
+        //DevTeam Update
 
-        /*DevTeam Delete - remove members from team 
-        public bool RemoveDeveloperFromTeam(string developerIdNumber)
-         
-            DevTeam developerOnTeam = GetDeveloperByIDNumber(developerIdNumber);
-
-           if (developerOnTeam == null)
-            {
-               return false;
-           }
-
-           int initialCount = _devTeams.Count;
-            _devTeams.Remove(developerOnTeam);
-
-            if (initialCount > _devTeams.Count)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-         }*/
-
+        //DevTeam Delete
+        
         //DevTeam Helper (Get Team by ID)
         public DevTeam GetDevTeamByIdNumber(string TeamIdNumber)
         {
@@ -68,34 +36,10 @@ namespace DevTeamsProject
                 {
                     return devTeam;
                 }
-
             }
-
             return null;
         }
-       
-        //Helper for get developer list above by Id number ??
-        //public DevTeam GetDeveloperByIDNumber(string developerIdNumber)
-        //{
-            
-
-            //foreach (DevTeam developerOnTeam in _devTeams)
-            //{
-              //  if (developerOnTeam.DeveloperIdNumber == developerIdNumber)
-              //  {
-               //     return developerOnTeam;
-              //  }
-
-         //   }
-
-          //  return null;
-       // }
-
-        
     }
 }
 
-//You must remove the field: _developerRepo from the DevTeamRepo class.
 
-//you will need to access your pool of Developers from outside of the DevTeamRepo class; 
-//utilize parameters to pass in Developer objects when adding or removing Developers from a Team.
