@@ -16,7 +16,6 @@ namespace DevTeamProjectConsoleApp
         public void Run()
         {
             SeedContentList();
-            SeedTeamList();
             Menu();
         }
 
@@ -94,7 +93,6 @@ namespace DevTeamProjectConsoleApp
                 Console.ReadKey();
                 Console.Clear();
             }
-
         }
 
         private void CreateNewDeveloper()
@@ -317,14 +315,17 @@ namespace DevTeamProjectConsoleApp
 
             List<DevTeam> listOfDevTeams = _devTeams.GetDevTeamList();
             Developer newDev = new Developer();
-           
 
             foreach (DevTeam devTeam in listOfDevTeams)
             {
-                Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
-                $"Team ID Number: {devTeam.TeamIdNumber}\n" +
-                $"Developers on Team: {devTeam.IdNumber}\n" +
-                $" ");
+                Console.WriteLine($"\n" +
+                $"Team Name: {devTeam.TeamName}\n" +
+                $"Team ID Number: {devTeam.TeamIdNumber}");
+
+                foreach (Developer developer in devTeam.DeveloperListForDevTeams)
+                {
+                    Console.WriteLine($"Developers On This Team (by ID #): {developer.IdNumber}");
+                }
             }
         }
 
@@ -339,9 +340,14 @@ namespace DevTeamProjectConsoleApp
 
             if (devTeam != null)
             {
-                Console.WriteLine($"Team Name: {devTeam.TeamName}\n" +
-                    $"Developers On This Team: {devTeam.IdNumber}\n" +
+                Console.WriteLine($"\n" +
+                    $"Team Name: {devTeam.TeamName}\n" +
+                    $"Developers On This Team: \n" +
                     $" ");
+                foreach (Developer developer in devTeam.DeveloperListForDevTeams)
+                {
+                    Console.WriteLine($"Developers On This Team (by ID #): {developer.IdNumber}");
+                }
             }
             else
             {
@@ -367,13 +373,10 @@ namespace DevTeamProjectConsoleApp
             _developerRepo.AddDeveloper(developer3);
             _developerRepo.AddDeveloper(developer4);
             _developerRepo.AddDeveloper(developer5);
-        }
         
-        private void SeedTeamList()
-        {
-            DevTeam team1 = new DevTeam("Team 1", "T1234", "81992");
-            DevTeam team2 = new DevTeam("Team 2", "T4567", "81993");
-            DevTeam team3 = new DevTeam("Team 3", "T6789", "81994, 81995");
+            DevTeam team1 = new DevTeam("Team 1", "T1234", new List<Developer>() {developer1, developer2});
+            DevTeam team2 = new DevTeam("Team 2", "T4567", new List<Developer>() {developer3});
+            DevTeam team3 = new DevTeam("Team 3", "T6789", new List<Developer>() {developer4});
 
             _devTeams.CreateNewTeam(team1);
             _devTeams.CreateNewTeam(team2);
