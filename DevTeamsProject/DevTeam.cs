@@ -20,7 +20,7 @@ namespace DevTeamsProject
             DeveloperListForDevTeams = developerListForDevTeams;
         }
 
-        //Developer repo:
+        //Developer Repo:
 
         private readonly List<Developer> _developerDirectory = new List<Developer>();
 

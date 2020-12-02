@@ -41,7 +41,7 @@ namespace DevTeamProjectConsoleApp
                     "7. Create New Developer Team/ Add Developers To Team\n" +
                     "8. View All Teams\n" +
                     "9. View Team By Team ID Number\n" +
-                    "10. Remove Developer From Team\n" +
+                    "10. Remove Developer Team\n" +
                     "11. Exit");
 
                 //Get user input
@@ -78,7 +78,7 @@ namespace DevTeamProjectConsoleApp
                         ViewTeamByTeamIDNumber();
                         break;
                     case "10":
-                        RemoveDeveloperFromTeam();
+                        RemoveDeveloperTeam();
                         break;
                     case "11":
                         Console.WriteLine("Goodbye!");
@@ -355,10 +355,25 @@ namespace DevTeamProjectConsoleApp
             }
         }
 
-        private void RemoveDeveloperFromTeam()
+        private void RemoveDeveloperTeam()
         {
+            ViewAllTeams();
+            Console.WriteLine("Enter the ID Number of the team you want to remove:");
+            string input = Console.ReadLine();
 
-        }          
+            bool wasRemoved = _devTeams.RemoveDeveloperTeam(input);
+                
+            if (wasRemoved)
+            {
+                Console.WriteLine("The developer team was successfully deleted from the application.");
+            }
+            else
+            {
+                Console.WriteLine("The developer team could not be deleted from the application. Please try again.");
+            }
+
+        }
+
         //seed method
         private void SeedContentList()
         {

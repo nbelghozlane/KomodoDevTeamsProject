@@ -9,7 +9,7 @@ namespace DevTeamsProject
     public class DevTeamRepo
     {
         private readonly List<DevTeam> _devTeams = new List<DevTeam>();
-        List<Developer> _developerDirectory = new List<Developer>(); //* think i need this??
+        List<Developer> _developerDirectory = new List<Developer>();
 
         //DevTeam Create - create a team/ add user to team
         public void CreateNewTeam(DevTeam devTeam)
@@ -26,7 +26,28 @@ namespace DevTeamsProject
         //DevTeam Update
 
         //DevTeam Delete
-        
+        public bool RemoveDeveloperTeam(string teamIdNumber)
+        {
+            DevTeam devTeam = GetDevTeamByIdNumber(teamIdNumber);
+
+            if (devTeam == null)
+            {
+                return false;
+            }
+
+            int initialCount = _devTeams.Count;
+            _devTeams.Remove(devTeam);
+
+            if (initialCount > _devTeams.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         //DevTeam Helper (Get Team by ID)
         public DevTeam GetDevTeamByIdNumber(string TeamIdNumber)
         {
